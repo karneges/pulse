@@ -49,6 +49,44 @@ $(document).ready(function () {
         evt.currentTarget.children[0].classList.toggle('catalog-item__content_active')
         evt.currentTarget.children[1].classList.toggle('catalog-item__list_active')
     }
+
+    //modal
+   let modalButtons = document.querySelectorAll(`button[data-modal=consultation]`);
+   modalButtons.forEach((item)=>{
+       item.addEventListener('click',()=>{
+           openWindows(`.overlay`,`#consultation`)
+       })
+
+   })
+   let popaps = document.querySelectorAll(`.modal__close`)
+   popaps.forEach((item)=>{
+       item.addEventListener('click',()=>{
+        closeWindows(`#consultation`,`.overlay`,`#thanks`,`#order`)
+       })
+   })
+   let btn_mini = document.querySelectorAll(`.button_mini`)
+   btn_mini.forEach((item,index)=>{
+       item.addEventListener(`click`,()=>{
+            openWindows('#order',`.overlay`);
+            document.querySelector(`#order`)
+            .querySelector(`.modal__descr`)
+            .textContent = itemsTitle[index].textContent
+       })
+   })
+
+   function closeWindows(...args){
+    args.forEach((item)=>{
+      document.querySelector(item).style.display = `none`
+    })
+   }
+   function openWindows(...args){
+    args.forEach((item)=>{
+      document.querySelector(item).style.display = `block`
+    })
+   }
+
+    
+
 });
 
 
